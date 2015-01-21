@@ -38,8 +38,10 @@
 			_.slider('-'+_.o.position);
 		}
 		_.slider = function(pos) {
-			var pos = ((_.box.position().top / pos) + 1) * pos;
-			_.box.animate({'top':pos+'px'});
+            if (!_.box.is(':animated')) {
+                var pos = ((_.box.position().top / pos) + 1) * pos;
+                _.box.stop(true,true).animate({'top':pos+'px',queue:true});
+            }
 		}
 	}
 
